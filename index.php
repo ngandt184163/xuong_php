@@ -46,7 +46,7 @@
                     <input name="search" type="text" placeholder="Search for products...">
             
 
-                    <input type="submit" name="add_product" value="Tìm">
+                    <input type="submit" name="tim" value="Tìm">
                     <!-- <button id="add_product" type="submit" name="add_product">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button> -->
@@ -54,10 +54,7 @@
                 </form>
 
                 <?php
-                    if(isset($_GET['add_product'])){
-                        var_dump($_GET);
-                        die();
-                    }
+                    
                 ?>
             </div>
 
@@ -117,45 +114,114 @@
             // echo "<br>";
 
             // echo "<a href='#'>click here</a>";
-            
-        // cach 1
-        foreach($products as $index => $product) {
-            ?>
-            <div class="product">
-                <div class="img">
-                    <img width="100px" height="50px" src="<?php echo $product['img']; ?>" alt="">
-                </div>
 
-                <div class="title">
-                    <h2><a href="product_detail.php?index=<?php echo $index; ?>"><?php echo $product['name']; ?></a></h2>
-                </div>
-
-                <div class="info">
-                    <b><?php echo $product['price']; ?></b>
-                    <i><?php echo $product['soluong']; ?></i>
-                </div>
-
-                <div class="giamgia">
-                    <?php
-                    if(strlen($product['giamgia']) != 0) {
-                        echo "<i>co giam gia</i>";
+        if(isset($_GET['tim'])){
+            $search = $_GET['search'];
+            if(!empty($search)) {
+                $item;
+                foreach($products as $index => $product) {
+                    $check = false;
+                    if($search == $product['name']) {
+                        $item = $product;
+                        $i = $index;
+                        $check = true;
+                        break;
                     }
+                }
+
+                if($check) {
+                    echo '<div class="product">
+                        <div class="img">
+                            <img width="100px" height="50px" src="'.$item['img'].'" alt="" />
+                        </div>
+
+                        <div class="title">
+                            <h2><a href="product_detail.php?index='.$i.'&message=hihi&number=100">'.$product['name'].'</a></h2>
+                        </div>
+
+                        <div class="info">
+                            <b>'.$item['price'].'</b>
+                            <i>'.$item['soluong'].'</i>
+                        </div>
+                    </div>';
+                }
+                else {
+                    echo "<h1?>Khong tim thay san pham nao</h1>";
+                }
+                
+
+            } else {
+                // cach 1
+                foreach($products as $index => $product) {
                     ?>
+                    <div class="product">
+                        <div class="img">
+                            <img width="100px" height="50px" src="<?php echo $product['img']; ?>" alt="">
+                        </div>
+
+                        <div class="title">
+                            <h2><a href="product_detail.php?index=<?php echo $index; ?>"><?php echo $product['name']; ?></a></h2>
+                        </div>
+
+                        <div class="info">
+                            <b><?php echo $product['price']; ?></b>
+                            <i><?php echo $product['soluong']; ?></i>
+                        </div>
+
+                        <div class="giamgia">
+                            <?php
+                            if(strlen($product['giamgia']) != 0) {
+                                echo "<i>co giam gia</i>";
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
+
+        } else {
+            // cach 1
+            foreach($products as $index => $product) {
+                ?>
+                <div class="product">
+                    <div class="img">
+                        <img width="100px" height="50px" src="<?php echo $product['img']; ?>" alt="">
+                    </div>
+
+                    <div class="title">
+                        <h2><a href="product_detail.php?index=<?php echo $index; ?>"><?php echo $product['name']; ?></a></h2>
+                    </div>
+
+                    <div class="info">
+                        <b><?php echo $product['price']; ?></b>
+                        <i><?php echo $product['soluong']; ?></i>
+                    </div>
+
+                    <div class="giamgia">
+                        <?php
+                        if(strlen($product['giamgia']) != 0) {
+                            echo "<i>co giam gia</i>";
+                        }
+                        ?>
+                    </div>
                 </div>
-            </div>
-            <?php
+                <?php
+            }
         }
+            
+        
 
         // cach 2
 
-        // foreach($products as $product ) {
+        // foreach($products as $index => $product ) {
         //     echo '<div class="product">
         //     <div class="img">
         //         <img width="100px" height="50px" src="'.$product['img'].'" alt="" />
         //     </div>
 
         //     <div class="title">
-        //         <h2>'.$product['name'].'</h2>
+        //         <h2><a href="product_detail.php?index='.$index.'&message=hihi&number=100">'.$product['name'].'</a></h2>
         //     </div>
 
         //     <div class="info">

@@ -21,6 +21,17 @@
             <input type="submit" name="register" value="Dang ki">
 
         </form>
+
+        <?php
+            if(isset($_POST['register'])) {
+                echo $_POST['email'];
+                echo "<br>";
+                echo $_POST['password'];
+            }
+            // connect sql
+            // sd cau lenh sql de luu tru du lieu
+            
+        ?>
     </div>
 </body>
 <script src="https://kit.fontawesome.com/791d1d50ef.js" crossorigin="anonymous"></script>

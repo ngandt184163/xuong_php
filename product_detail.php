@@ -90,54 +90,66 @@
                 'name'=> "Ip 7s", 'price' => 20000, 'soluong' => 20, 'giamgia' => ''],
             ];
 
-        
-            
+            $index = isset($_GET['index']) ? $_GET['index'] : null;
+            // if(isset($_GET['index'])) {
+            //     $index = $_GET['index'];
+            // }else {
+            //     $index = null;
+            // }
+            $product = $products[$index]; // lay san pham
+            if($product) {
+                ?>
+                <div class="product_detail">
+                    <div class="img">
+                        <img src="<?php echo $product['img']; ?>" alt="">
+                    </div>
+
+                    <div class="info">
+                        <h3><?php echo $product['name']; ?></h3>
+                        <div class="vote">
+                            <ul>
+                                <li style="list-style-type: none;">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </li>
+                                <li>3.1k danh gia</li>
+                                <li>da ban 30.4k</li>
+                            </ul>
+                        </div>
+
+                        <div class="price">
+                            <p><?php echo $product['price']; ?></p>
+                        </div>
+                        <div class="dec">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, doloribus deserunt quibusdam minus sit ab repellendus ipsam ad illum minima? Sit debitis, dignissimos corporis eveniet possimus facere ex qui error.</p>
+                        </div>
+
+                        <div class="buy_number">
+                            <p>so luong</p>
+                            <button class="minus">-</button>
+                            <input type="number"> 
+                            <button class="plus">+</button>
+                            <i>9324 san pham co san</i>
+                        </div>
+
+                        <p class="clear"></p>
+                        <div class="add-buy">
+                            <button class="add">Them gio hang</button>
+                            <button class="buy">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }else {
+                echo "<h1>San pham khong hop le</h1>";
+            }
        
         ?>
 
-        <div class="product_detail">
-            <div class="img">
-                <img src="./img/giay.jpg" alt="">
-            </div>
-
-            <div class="info">
-                <h3>Ten san pham</h3>
-                <div class="vote">
-                    <ul>
-                        <li style="list-style-type: none;">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </li>
-                        <li>3.1k danh gia</li>
-                        <li>da ban 30.4k</li>
-                    </ul>
-                </div>
-
-                <div class="price">
-                    <p>9000 vnd</p>
-                </div>
-                <div class="dec">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, doloribus deserunt quibusdam minus sit ab repellendus ipsam ad illum minima? Sit debitis, dignissimos corporis eveniet possimus facere ex qui error.</p>
-                </div>
-
-                <div class="buy_number">
-                    <p>so luong</p>
-                    <button class="minus">-</button>
-                    <input type="number"> 
-                    <button class="plus">+</button>
-                    <i>9324 san pham co san</i>
-                </div>
-
-                <p class="clear"></p>
-                <div class="add-buy">
-                    <button class="add">Them gio hang</button>
-                    <button class="buy">Mua ngay</button>
-                </div>
-            </div>
-        </div>
+        
         
         
        

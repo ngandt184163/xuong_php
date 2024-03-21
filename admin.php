@@ -92,7 +92,6 @@
             ];
 
         
-        
        
         ?>
         <div class="add_product">
@@ -107,7 +106,32 @@
                 <td>Sua</td>
                 <td>Xoa</td>
             </tr>
-            <tr>
+            
+            <?php
+                $i = 1;
+                foreach($products as $index => $product) {
+                    ?>
+                    <tr>
+                        <td><?php echo $i++; ?></td>
+                        <td><?php echo $product[ 'name']; ?></td>
+                        <td><?php echo $product[ 'price']; ?></td>
+                        <td><img width="50px" height="50px" src="<?php echo $product[ 'img']; ?>" alt=""></td>
+                        <td><a href="update.php?index=<?php echo $index; ?>">Sua</a></td>
+                        <td><a href="#">Xoa</a></td>
+                    </tr>
+                    <?php 
+                }
+            ?>
+            
+            <!-- <tr>
+                <td>demo text</td>
+                <td>demo text</td>
+                <td>demo text</td>
+                <td>demo text</td>
+                <td><a href="#">Sua</a></td>
+                <td><a href="#">Xoa</a></td>
+            </tr> -->
+            <!-- <tr>
                 <td>demo text</td>
                 <td>demo text</td>
                 <td>demo text</td>
@@ -130,23 +154,7 @@
                 <td>demo text</td>
                 <td><a href="#">Sua</a></td>
                 <td><a href="#">Xoa</a></td>
-            </tr>
-            <tr>
-                <td>demo text</td>
-                <td>demo text</td>
-                <td>demo text</td>
-                <td>demo text</td>
-                <td><a href="#">Sua</a></td>
-                <td><a href="#">Xoa</a></td>
-            </tr>
-            <tr>
-                <td>demo text</td>
-                <td>demo text</td>
-                <td>demo text</td>
-                <td>demo text</td>
-                <td><a href="#">Sua</a></td>
-                <td><a href="#">Xoa</a></td>
-            </tr>
+            </tr> -->
         </table>
        
     </div>
