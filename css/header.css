@@ -4,7 +4,11 @@
 }
 
 body {
-  /* height: 2000px; */
+  height: 2000px;
+}
+
+.clear {
+  clear: both;
 }
 
 /* ==================== */
@@ -22,7 +26,7 @@ body {
   display: flex;
 }
 
-.header .menu-1 ul {
+.header .menu-1 > ul {
   display: flex;
   float: left;
   margin: auto;
@@ -36,6 +40,34 @@ body {
 .header .menu-1 ul li a {
   text-decoration: none;
   color: #fff;
+}
+
+.header .menu-1 ul .action {
+  width: 150px;
+  position: absolute;
+  z-index: 10;
+  box-shadow: 5px 5px 5px #f63;
+  border-radius: 5px;
+  background: #fff;
+  top: 26px;
+  left: 215px;
+  border: 1px solid #f63;
+}
+
+.hidden {
+  display: none;
+}
+.header .menu-1 ul .action ul li {
+  list-style-type: none;
+  cursor: pointer;
+  padding: 10px 5px;
+}
+
+.header .menu-1 ul .action ul li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  width: 100%;
 }
 
 /* ============================= */
@@ -53,15 +85,36 @@ body {
   background: #fff;
   padding: 10px;
   border-radius: 10px;
+
+  /* box-sizing: border-box; */
 }
-.header .menu-2 .search input {
+.header .menu-2 .search input[type="text"] {
   width: 600px;
   padding: 5px;
   border: none;
+  outline: none;
 }
+
+.header .menu-2 .search input[type="submit"] {
+  border: none;
+  width: 50px;
+  height: 25px;
+  background-color: #f53d2d;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+/* .header .menu-2 .search i {
+  font-size: 20px;
+  background-color: #f53d2d;
+  border-radius: 5px;
+} */
 
 .header .menu-2 .logo {
   margin-right: 100px;
+  position: relative;
+  left: 40px;
 }
 
 .header .menu-2 .cart {
@@ -89,3 +142,5 @@ body {
   text-decoration: none;
   color: #fff;
 }
+
+/* ============================================ */

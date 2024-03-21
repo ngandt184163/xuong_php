@@ -13,6 +13,8 @@
   box-sizing: border-box;
   min-height: 200px;
   box-shadow: 5px 5px 5px #ccc;
+  flex: 0 1 calc(25% - 20px);
+  margin: 0 10px;
 }
 
 .container .product .img {
