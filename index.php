@@ -27,10 +27,42 @@
                 <li id="user"><a href="#">user</a></li>
                 <div class="action hidden">
                     <ul>
-                        <li><a href="register.php">Dang ki</a></li>
-                        <li><a href="login.php">Dang nhap</a></li>
-                        <li><a href="#">Dang xuat</a></li>
-                        <li><a href="admin.php">Quan li</a></li>
+                        <?php
+                            // session_set_cookie_params(3600);
+                            session_start();
+                            // echo $_SESSION['username'];
+                            function isLogin() {
+                                $username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+                                echo "username:".$username;
+                                // die();
+                                if($username) {
+                                    return true;
+                                }
+                                return false;
+                            }
+
+                            if(isLogin()) {
+                                ?>
+                                <li><a href="logout.php">Dang xuat</a></li>
+                                <?php
+                                    $role = $_SESSION['role'];
+                                    if($role == 'admin') {
+                                        ?>
+                                        <li><a href="admin.php">Quan li</a></li>
+                                        <?php
+                                    }
+                                ?>
+                                <?php
+                            }else {
+                                ?>
+                                <li><a href="register.php">Dang ki</a></li>
+                                <li><a href="login.php">Dang nhap</a></li>
+                                <?php
+                            }
+                        ?>
+                        
+                        
+                        
                     </ul>
                 </div>
             </ul>
@@ -38,7 +70,7 @@
 
         <div class="menu-2">
             <div class="logo">
-                <a href="#"><img with='100px' height="50px" src="./img/logo.png" alt="logo shopee"></a>
+                <img onclick="handleClick()" with='100px' height="50px" src="./img/logo.png" alt="logo shopee">
             </div>
 
             <div class="search">
@@ -54,7 +86,14 @@
                 </form>
 
                 <?php
+
                     
+
+
+                //     session_start();
+
+                //    unset($_SESSION['username']);
+
                 ?>
             </div>
 
@@ -82,61 +121,65 @@
     <div class="container">
 
         <?php
+            // include "connect.php";
+
+            // // query ra du lieu
+            // $sql = "SELECT * FROM product";
+
+            // $arr = $conn->query($sql);
+            // if($arr->rowCount() > 0){
+            //     while($row = $arr->fetch(PDO::FETCH_ASSOC)){
+            //         var_dump($row);
+            //         echo "<br>";
+            //     }
+            // }
+            // die();
             $products = [
                 [ 'id'=> 1,'img' => './img/ip.jpg',
                  'name'=> "Ip 3s", 'price' => 20000, 'soluong' => 20, 'giamgia' => ''],
                 [ 'id'=> 2,'img' => './img/ip.jpg',
-                'name'=> "Ip 4s", 'price' => 20000, 'soluong' => 20, 'giamgia' => ''],
+                'name'=> "Ip 4s pro", 'price' => 20000, 'soluong' => 20, 'giamgia' => ''],
                 [ 'id'=> 3,'img' => './img/ip.jpg',
                 'name'=> "Ip 5s", 'price' => 20000, 'soluong' => 20, 'giamgia' => ''],
                 [ 'id'=> 4,'img' => './img/ip.jpg',
-                'name'=> "Ip 6s", 'price' => 20000, 'soluong' => 20,'giamgia' => ''],
+                'name'=> "Ip 6s pro", 'price' => 20000, 'soluong' => 20,'giamgia' => ''],
                 [ 'id'=> 5,'img' => './img/ip.jpg',
                 'name'=> "Ip 7s", 'price' => 20000, 'soluong' => 20,  'giamgia' => ''],
                 [ 'id'=> 6,'img' => './img/ip.jpg',
-                'name'=> "Ip 8s", 'price' => 20000, 'soluong' => 20, 'giamgia' => ''],
+                'name'=> "Ip 8s pro", 'price' => 20000, 'soluong' => 20, 'giamgia' => ''],
                 [ 'id'=> 7,'img' => './img/giay.jpg',
                 'name'=> "NIKE", 'price' => 2010, 'soluong' => 60,  'giamgia' => 'co giam gia'],
                 [ 'id'=> 8,'img' => './img/giay.jpg',
                 'name'=> "Ip 7s", 'price' => 20000, 'soluong' => 20, 'giamgia' => ''],
             ];
 
-            // foreach($products as $product) {
-            //     echo $product['img'];
-            //     echo $product['name'];
-            //     echo $product['price'];
-            //     echo "<hr>";
-            //     echo "<br>";
-            // }
+           
+        function searchProduct($search, $products) {
+            $product_search=[];
+            foreach($products as $key =>$product) {
+                if(strpos(strtolower($product['name']), strtolower($search)) !== FALSE){
+                    $product_search[$key] = $product;
+                }
+            }
 
-            
-
-            // echo "<br>";
-
-            // echo "<a href='#'>click here</a>";
+            return $product_search;
+        }
 
         if(isset($_GET['tim'])){
             $search = $_GET['search'];
             if(!empty($search)) {
-                $item;
-                foreach($products as $index => $product) {
-                    $check = false;
-                    if($search == $product['name']) {
-                        $item = $product;
-                        $i = $index;
-                        $check = true;
-                        break;
-                    }
-                }
+                $product_search = searchProduct($search, $products);
 
-                if($check) {
-                    echo '<div class="product">
+                if(!empty($product_search)) {
+
+                    foreach($product_search as $key=> $item){
+                        echo '<div class="product">
                         <div class="img">
                             <img width="100px" height="50px" src="'.$item['img'].'" alt="" />
                         </div>
 
                         <div class="title">
-                            <h2><a href="product_detail.php?index='.$i.'&message=hihi&number=100">'.$product['name'].'</a></h2>
+                            <h2><a href="product_detail.php?index='.$key.'&message=hihi&number=100">'.$item['name'].'</a></h2>
                         </div>
 
                         <div class="info">
@@ -144,6 +187,8 @@
                             <i>'.$item['soluong'].'</i>
                         </div>
                     </div>';
+                    }
+                    
                 }
                 else {
                     echo "<h1?>Khong tim thay san pham nao</h1>";

@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,3 +172,10 @@
 <script src="https://kit.fontawesome.com/791d1d50ef.js" crossorigin="anonymous"></script>
 <script src="js.js"></script>
 </html>
+    <?php
+}else {
+    echo "<script>alert('ban khong co quyen truy cap trang nay');</script>";
+    echo "<script>window.location.href='index.php';</script>";
+}
+?>
+

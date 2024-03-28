@@ -28,3 +28,8 @@ if (user) {
 //   event.preventDefault();
 //   console.log("ok");
 // };
+
+function handleClick() {
+  // alert("Button clicked!");
+  window.location.href = "index.php";
+}

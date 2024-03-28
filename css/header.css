@@ -115,6 +115,7 @@ body {
   margin-right: 100px;
   position: relative;
   left: 40px;
+  cursor: pointer;
 }
 
 .header .menu-2 .cart {
